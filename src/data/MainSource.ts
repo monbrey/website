@@ -1,16 +1,17 @@
 import semver from 'semver';
 
-import DocsSource from './DocsSource';
+import MainSource from './DocsSource';
 
-const branchBlacklist = new Set(['docs', 'webpack', 'v8']);
-export default new DocsSource({
-	id: 'discord.js',
-	name: 'Discord',
-	global: 'Discord',
+const branchBlacklist = new Set(['docs', 'v8', 'v11', 'v12', 'v13']);
+export default new MainSource({
+	id: 'kauri',
+	name: 'Kauri',
+	global: 'Kauri',
 	docsRepo: 'discordjs/docs',
-	repo: 'discordjs/discord.js',
-	defaultTag: 'stable',
+	repo: 'monbrey/professor-kauri',
+	defaultTag: 'main',
 	branchFilter: (branch: string) => !branchBlacklist.has(branch) && !branch.startsWith('dependabot/'),
 	tagFilter: (tag: string) =>
-		semver.gte(tag.replace(/(^@\w+\/\w+@v?)?(?<semver>\d+.\d+.\d+)-?.*/, '$<semver>'), '9.0.0'),
+		tag.includes('@discordjs/builders') &&
+		semver.gte(tag.replace(/(^@.*\/.*@v?)?(?<semver>\d+.\d+.\d+)-?.*/, '$<semver>'), '0.8.1'),
 });

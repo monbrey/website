@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import semver from 'semver';
 
 interface DocsSourceOptions {
@@ -55,6 +58,7 @@ export default class DocsSource {
 				if (localStorage[`source-${this.id}`]) {
 					console.error(err);
 					const cache = JSON.parse(localStorage[`source-${this.id}`]);
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 					return [cache.branches, cache.tags];
 				}
 				throw err;
@@ -104,12 +108,13 @@ export default class DocsSource {
 					this.tags.push(tag.name);
 				}
 
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				return this.tags;
 			});
 	}
 
 	public async fetchDocs(tag: string) {
-		const res = await fetch(`https://raw.githubusercontent.com/${this.docsRepo}/main/${this.id}/${tag}.json`);
+		const res = await fetch(`https://raw.githubusercontent.com/monbrey/professor-kauri/v5/docs/docs.json`);
 		return json(res);
 	}
 }
