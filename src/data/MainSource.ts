@@ -11,7 +11,5 @@ export default new MainSource({
 	repo: 'monbrey/professor-kauri',
 	defaultTag: 'main',
 	branchFilter: (branch: string) => !branchBlacklist.has(branch) && !branch.startsWith('dependabot/'),
-	tagFilter: (tag: string) =>
-		tag.includes('@discordjs/builders') &&
-		semver.gte(tag.replace(/(^@.*\/.*@v?)?(?<semver>\d+.\d+.\d+)-?.*/, '$<semver>'), '0.8.1'),
+	tagFilter: (tag: string) => semver.gte(tag.replace(/(^@.*\/.*@v?)?(?<semver>\d+.\d+.\d+)-?.*/, '$<semver>'), '9.0.0'),
 });
