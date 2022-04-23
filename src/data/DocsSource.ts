@@ -8,6 +8,7 @@ interface DocsSourceOptions {
 	name: string;
 	global: string;
 	docsRepo: string;
+	docsUrl?: string;
 	repo: string;
 	defaultTag?: string;
 	defaultFile?: { category: string; id: string };
@@ -29,6 +30,8 @@ export default class DocsSource {
 	public global = this.options.global;
 
 	public docsRepo = this.options.docsRepo;
+
+	public docsUrl = this.options.docsUrl;
 
 	public repo = this.options.repo;
 
@@ -114,7 +117,7 @@ export default class DocsSource {
 	}
 
 	public async fetchDocs(tag: string) {
-		const res = await fetch(`https://raw.githubusercontent.com/monbrey/professor-kauri/v5/docs/docs.json`);
+		const res = await fetch(this.docsUrl ?? `https://raw.githubusercontent.com/${this.docsRepo}/main/docs/docs.json`);
 		return json(res);
 	}
 }

@@ -1,7 +1,7 @@
 {
-	"name": "discord.js-website",
+	"name": "kauri-website",
 	"version": "3.0.0",
-	"description": "The website housing documentation for discord.js",
+	"description": "The website housing documentation for the Kauri framework",
 	"author": "Noel Buechler <icrawltogo@outlook.com>",
 	"contributors": [
 		"Amish Shah <amishshah.2k@gmail.com>",
